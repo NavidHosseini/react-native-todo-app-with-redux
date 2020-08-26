@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { StyleSheet, Text, View, TextInput, Button } from "react-native"
+import React, { useState, useEffect } from "react"
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from "react-native"
 import { useRoute } from "@react-navigation/native"
 import { edittodo } from '../Redux/actions/ActionTodo'
 import { useDispatch } from 'react-redux'
@@ -7,10 +7,15 @@ import { useDispatch } from 'react-redux'
 
 const EditTodo = ({ navigation }) => {
 
-    const [title, setTitle] = useState("")
+    const [title, setTitle] = useState()
     const [content, setContent] = useState("")
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        setContent(`${Content}`)
+        setTitle(`${Title}`)
+    }, [])
 
 
 
@@ -21,7 +26,8 @@ const EditTodo = ({ navigation }) => {
 
     const route = useRoute()
     const id = route.params.id
-
+    const Title = route.params.title
+    const Content = route.params.content
 
     return (
         <View>
@@ -39,15 +45,20 @@ const EditTodo = ({ navigation }) => {
                 value={content}
                 onChangeText={text => setContent(text)}
             />
-            <View style={styles.Button}>
-                <Button
-                    title="Edit todo"
-                    onPress={() => {
-                        PressEditTodo({ title, content, id })
-                        navigation.navigate("Home")
-                    }}
-                />
-            </View>
+
+            <TouchableOpacity
+                onPress={() => {
+                    PressEditTodo({ title, content, id })
+                    navigation.navigate("Home")
+                }}
+            >
+                <View style={styles.Button}>
+
+                    <Text style={styles.ButtonText}>اصلاح</Text>
+                </View>
+
+            </TouchableOpacity>
+
         </View>
     )
 }
@@ -55,24 +66,28 @@ const EditTodo = ({ navigation }) => {
 const styles = StyleSheet.create({
     TextInput: {
         margin: 20,
-        backgroundColor: "#bbcfd5",
-        borderRadius: 20
+        backgroundColor: "#c7cbd2",
+        borderRadius: 10
     },
-    textView: {
-        alignItems: "center",
-    },
-    Text: {
-        fontSize: 40,
-    },
+
     Button: {
         marginHorizontal: 20,
+        alignItems: 'center',
+        backgroundColor: '#ec5a1a',
+        padding: 20,
+        borderRadius: 7,
+
     },
     TextInputcontent: {
         margin: 20,
-        backgroundColor: "#bbcfd5",
+        backgroundColor: "#c7cbd2",
         paddingBottom: 170,
-
+        borderRadius: 10
     },
+    ButtonText: {
+        fontFamily: 'Sans',
+        color: '#fff'
+    }
 })
 
 export default EditTodo

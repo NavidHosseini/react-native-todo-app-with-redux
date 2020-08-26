@@ -5,7 +5,7 @@ const Initialstate = {
   todos: [
     {
       id: 1,
-      title: 'کاره پیش فرض',
+      title: 'کار پیش فرض',
       content: 'این یه کاره پیش فرضه'
     },
 

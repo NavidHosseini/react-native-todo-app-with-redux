@@ -1,13 +1,16 @@
 import React from "react"
 import { View, StyleSheet } from "react-native"
-import Icon from "react-native-ionicons"
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useNavigation } from "@react-navigation/native"
 
 const AddButton = () => {
     const navigation = useNavigation()
     return (
         <View style={styles.Button}>
-            <Icon name="add" onPress={() => navigation.navigate("createTodo")} />
+            <FontAwesome name="plus-square-o"
+                onPress={() => navigation.navigate("createTodo")}
+                size={27}
+            />
         </View>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, TextInput, Button } from 'react-native'
+import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-native'
 import { addtodoAction } from '../Redux/actions/ActionTodo'
 import { useDispatch } from 'react-redux'
 
@@ -32,15 +32,18 @@ const CreateTodo = ({ navigation }) => {
                 value={content}
                 onChangeText={text => setContent(text)}
             />
-            <View style={styles.Button}>
-                <Button
-                    title="اضافه به لیست"
-                    onPress={() => {
-                        onPressHandler()
-                        navigation.navigate("Home")
-                    }}
-                />
-            </View>
+
+            <TouchableOpacity
+                onPress={() => {
+                    onPressHandler()
+                    navigation.navigate("Home")
+                }}
+            >
+                <View style={styles.Button}>
+                    <Text style={styles.ButtonText}>ایجاد</Text>
+                </View>
+            </TouchableOpacity>
+
         </View>
     )
 }
@@ -51,19 +54,26 @@ const styles = StyleSheet.create({
     TextInput: {
         margin: 20,
         backgroundColor: "#bbcfd5",
+        borderRadius: 10
+
     },
-    textView: {
-        alignItems: "center",
-    },
-    Text: {
-        fontSize: 40,
+
+    ButtonText: {
+        fontFamily: 'Sans',
+        color: '#fff'
     },
     Button: {
         marginHorizontal: 20,
+        alignItems: 'center',
+        backgroundColor: '#1a60ec',
+        padding: 20,
+        borderRadius: 7,
     },
     TextInputcontent: {
         margin: 20,
         backgroundColor: "#bbcfd5",
         paddingBottom: 170,
+        borderRadius: 10
+
     },
 })

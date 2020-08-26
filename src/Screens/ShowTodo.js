@@ -1,75 +1,113 @@
 import React from "react"
-import { View, Text, StyleSheet, Button } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { useRoute } from "@react-navigation/native"
-import Icon from "react-native-ionicons"
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { deleteTodo } from '../Redux/actions/ActionTodo'
+import { useDispatch } from 'react-redux'
 
 
 const ShowTodo = ({ navigation }) => {
-    const route = useRoute()
-    const id = route.params.id
+  const route = useRoute()
+  const id = route.params.id
+  const title = route.params.title
+  const content = route.params.content
+
+  const dispatch = useDispatch()
+
+  const DeleteHandler = id => {
+    dispatch(deleteTodo(id))
+  }
 
 
-    return (
-        <View>
-            <View style={styles.Viewshowtodo}>
-
-                <Text  >{route.params.title}</Text>
-                <Text style={styles.title}>عنوان کار :</Text>
-            </View>
-
-            <View style={styles.Viewshowtodo}>
-
-
-                <Text >{route.params.content}</Text>
-                <Text style={styles.content}>توضیحات :</Text>
-            </View>
-
-
-
-            <View style={styles.penIcon}>
-
-                <Icon name="create" onPress={() => {
-                    navigation.navigate("EditTodo", { id })
-                }} />
-
-            </View>
-            <View style={styles.Button}>
-                <Button
-                    title="بازگشت به صفحه اصلی"
-                    onPress={() => navigation.navigate("Home")}
-                />
-            </View>
+  return (
+    <>
+      <View style={styles.containerTodo}>
+        <View style={styles.ViewTitle}>
+          <Text style={styles.title}>{title}</Text>
         </View>
-    )
+
+        <View style={styles.ViewContent}>
+
+          <Text style={styles.content}>{content}</Text>
+        </View>
+
+        <View style={styles.editButtonView} >
+          <View style={{ flexDirection: 'row' }}>
+            <FontAwesome name='edit' style={styles.editButton}
+              onPress={() => {
+                navigation.navigate("EditTodo", { id, title, content })
+              }} />
+            <FontAwesome name='trash' style={styles.trash}
+              onPress={() => {
+                DeleteHandler(id)
+                navigation.navigate('Home')
+              }} />
+
+          </View>
+        </View>
+      </View>
+      <TouchableOpacity
+
+        onPress={() => { navigation.navigate("Home") }} >
+        <View style={styles.ExitButton}>
+          <Text>صفحه اصلی</Text>
+        </View>
+
+      </TouchableOpacity>
+    </>
+  )
 }
 
 const styles = StyleSheet.create({
-    title: {
-        fontSize: 20,
-        fontWeight: "bold",
-        marginLeft: 20,
-        fontFamily: 'Sans'
-    },
-    content: {
-        fontSize: 30,
-        fontWeight: "bold",
+  containerTodo: {
+    backgroundColor: '#cfcccb',
+    height: '45%',
+    width: '100%',
+    borderRadius: 30,
+    marginTop: 10,
+    marginBottom: 15,
+  },
+  title: {
+    fontFamily: 'SansBold',
+    fontSize: 25,
+    marginTop: 8,
+    marginBottom: 15,
+    textDecorationLine: 'underline'
+  },
+  ViewTitle: {
+    alignItems: 'center'
+  },
+  ViewContent: {
+    flex: 1
+  },
+  content: {
+    marginRight: 15,
+    fontFamily: 'Sans'
+  },
+  editButton: {
+    fontSize: 28,
+    color: '#2b64c8',
+    marginBottom: 10,
+    marginRight: 28
+  },
+  editButtonView: {
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  trash: {
+    color: '#c41919',
+    fontSize: 28,
+    marginLeft: 28
+  },
+  ExitButton: {
+    marginHorizontal: 3,
+    alignItems: 'center',
+    backgroundColor: '#aeb9cc',
+    padding: 20,
+    borderRadius: 7,
+    marginTop: 20
 
-    },
-    Button: {
-        marginTop: 30,
-        marginHorizontal: 25,
-    },
-    Viewshowtodo: {
-        marginRight: 15,
-        marginTop: 15,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center'
-    },
-    penIcon: {
-        alignItems: 'center',
-        marginTop: 20
-    }
+  },
 })
 
 export default ShowTodo

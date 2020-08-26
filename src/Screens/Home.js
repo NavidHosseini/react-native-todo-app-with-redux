@@ -6,10 +6,12 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native"
-import Icon from "react-native-ionicons"
-import { useSelector } from 'react-redux'
+
+import { useSelector, useDispatch } from 'react-redux'
 import { deleteTodo } from '../Redux/actions/ActionTodo'
-import { useDispatch } from 'react-redux'
+
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+
 
 const Home = ({ navigation }) => {
   const todos = useSelector(state => state.todos)
@@ -19,9 +21,6 @@ const Home = ({ navigation }) => {
   const onPressHandler = id => {
     dispatch(deleteTodo(id))
   }
-
-
-
 
   return (
     <View>
@@ -40,13 +39,11 @@ const Home = ({ navigation }) => {
               style={{ backgroundColor: '#d0d0d0', marginBottom: 10 }}
             >
               <View style={styles.todoView}>
-
-
                 <TouchableOpacity onPress={() => onPressHandler(item.id)}>
-                  <Icon name="trash" style={styles.trash} />
-                  {/* <Text>{item.id}</Text> */}
+                  <FontAwesome name='trash' style={styles.trash} />
                 </TouchableOpacity>
                 <Text style={styles.TodoTitle}>{item.title}</Text>
+                <FontAwesome name='check' style={styles.check} onPress={() => alert('در دسته ساخت')} />
               </View>
             </TouchableOpacity>
           )
@@ -67,12 +64,19 @@ const styles = StyleSheet.create({
   },
   trash: {
     padding: 8,
-    color: '#c41919'
+    color: '#c41919',
+    fontSize: 27
   },
   TodoTitle: {
     fontSize: 20,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     textAlign: 'right',
-    fontFamily: 'Sans'
+    fontFamily: 'SansBold'
   },
+  check: {
+    padding: 8,
+    color: '#17c253',
+    fontSize: 27,
+
+  }
 })
