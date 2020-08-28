@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, EDIT_TODO } from '../actions/types'
+import { ADD_TODO, DELETE_TODO, EDIT_TODO,TOGGLE_TODO } from '../actions/types'
 
 const reducer = (state, { type, payload }) => {
     switch (type) {
@@ -19,6 +19,13 @@ const reducer = (state, { type, payload }) => {
                   todo.id === payload.id ? payload : todo  
                 )
               }
+              case TOGGLE_TODO:
+                return {
+                  ...state,
+                  todos: state.todos.map(todo =>
+                    todo.id === payload ? { ...todo, completed: !todo.completed } : todo
+                  )
+                }
 
         default:
             return state

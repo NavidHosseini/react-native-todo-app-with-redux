@@ -6,7 +6,8 @@ const Initialstate = {
     {
       id: 1,
       title: 'کار پیش فرض',
-      content: 'این یه کاره پیش فرضه'
+      content: 'این یه کاره پیش فرضه',
+      completed: false
     },
 
   ]
