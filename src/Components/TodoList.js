@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         // fontWeight: "bold",
         textAlign: 'right',
-        fontFamily: 'SansBold'
+        fontFamily: 'SansBold',
+        color: 'black'
     },
 
 
@@ -79,7 +80,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'right',
         fontFamily: 'SansBold',
-        textDecorationLine: 'line-through'
+        textDecorationLine: 'line-through',
+        color: '#696f6b'
     },
 
     check: {
