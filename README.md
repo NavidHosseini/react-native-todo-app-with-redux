@@ -2,7 +2,7 @@
 
 ![License Badge](https://img.shields.io/github/license/JadRizk/TodoApp?style=plastic)
 
-This is a simple Todo application with Redux
+This is a simple Todo CRUD application with Redux
 
 <div>
 <img style="margin: 20" src="http://uupload.ir/files/ogem_screenshot_1599324569.png" width="250" height="450">
