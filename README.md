@@ -5,9 +5,7 @@
 This is a simple Todo application with Redux
 
 <div>
-<img style="margin: 20" src="
-https://d1.98share.com/upload/user/storage/8/9/3/gbymud6p2qe7893f4427ccb175a24474b34dfdd0733e.png
-" width="250" height="450">
+<img style="margin: 20" src="http://uupload.ir/files/ogem_screenshot_1599324569.png" width="250" height="450">
 
 </div>
 
